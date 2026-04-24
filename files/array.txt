@@ -1,2 +1,1 @@
 Write the array on the next line in the format "1 2 3 4 5 6 7", the maximum length of the array is 35, the maximum possible number is 1000, the minimum is -999.
--999 -1000

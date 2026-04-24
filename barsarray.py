@@ -6,6 +6,7 @@ class BarsArray:
         self.max_val = max(array)
         self.min_val = min(array)
         self.barWidth = ((I_WIDTH - (I_SPACE * 2)) // len(array)) - SPACE_BETWEEN_BARS
+        
         for i in range(0, len(array)):
             self.barsArray.append(Bar(I_POSX + I_SPACE + (self.barWidth + SPACE_BETWEEN_BARS) * i,
             self.barWidth, get_bar_height(array[i], self.min_val, self.max_val, BAR_MIN_HEIGHT, BAR_MAX_HEIGHT), array[i]))

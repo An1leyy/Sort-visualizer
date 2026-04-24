@@ -131,9 +131,9 @@ class Visualizer:
     
         for i, value in enumerate(array):
             if value > 1000:
-                return False, f"Element at {i+1} ({value}) larger than 1000.\nMaximum possible number is 1000."
+                return False, f"Element at index {i+1} ({value}) larger than 1000.\nMaximum possible number is 1000."
             if value < -999:
-                return False, f"Element at {i+1} ({value}) lower than -999.\Minimum possible number is -999."
+                return False, f"Element at index {i+1} ({value}) lower than -999.\nMinimum possible number is -999."
         
         return True, None
 

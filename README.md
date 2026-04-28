@@ -1,8 +1,10 @@
-# Sort Visualizer
-
 <div align="center">
 
+# Sort Visualizer
+
 **Интерактивная визуализация алгоритмов сортировки с плавной анимацией**
+
+</div>
 
 ---
 

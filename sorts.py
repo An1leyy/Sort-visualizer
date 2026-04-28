@@ -28,3 +28,10 @@ def insertion_sort_rec(arr, actions):
             arr[j], arr[j - 1] = arr[j - 1], arr[j]
             actions.append(('swap', j, j - 1))
             j -= 1
+
+SORT_ALGORITHMS = {
+    "Bubble": bubble_sort_rec,
+    "Insertion": insertion_sort_rec,
+    "Selection": selection_sort_rec
+}
+SORT_TYPES = list(SORT_ALGORITHMS.keys())

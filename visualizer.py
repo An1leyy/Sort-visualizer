@@ -4,7 +4,7 @@ import random
 import os
 from constants import *
 from barsarray import BarsArray
-from sorts import bubble_sort_rec, selection_sort_rec, insertion_sort_rec
+from sorts import *
 from button import Button
 
 class Visualizer:
@@ -72,7 +72,7 @@ class Visualizer:
             return
         
         self.baseArray = array
-        self.start_sorting(self.sort_algorithms.get(self.sorttype))
+        self.start_sorting(SORT_ALGORITHMS.get(self.sorttype))
         self.automode = False
     
     def read_array_from_file(self, file_path):
@@ -218,13 +218,6 @@ class Visualizer:
             self.importbutton
         ]
 
-        self.sort_algorithms = {
-            "Bubble": bubble_sort_rec,
-            "Insertion": insertion_sort_rec,
-            "Selection": selection_sort_rec
-        }
-        self.sort_types = list(self.sort_algorithms.keys())
-
         while running:
             current_time = pg.time.get_ticks() / 1000.0
             delta_time = current_time - last_time
@@ -250,7 +243,7 @@ class Visualizer:
 
                     if self.randombutton.handle_event(event):
                         self.baseArray = [random.randint(ARRAY_MIN_ELEMENT, ARRAY_MAX_ELEMENT) for _ in range(random.randint(10, ARRAY_SIZE_LIMIT))]
-                        self.start_sorting(self.sort_algorithms.get(self.sorttype))
+                        self.start_sorting(SORT_ALGORITHMS.get(self.sorttype))
                         self.automode = False
 
                     if self.exitbutton.handle_event(event):
@@ -260,16 +253,16 @@ class Visualizer:
                         self.import_array_from_file()
                     
                     if self.leftbutton.handle_event(event):
-                        current_index = self.sort_types.index(self.sorttype)
-                        new_index = (current_index - 1) % len(self.sort_types)
-                        self.sorttype = self.sort_types[new_index]
-                        self.start_sorting(self.sort_algorithms.get(self.sorttype))
+                        current_index = SORT_TYPES.index(self.sorttype)
+                        new_index = (current_index - 1) % len(SORT_TYPES)
+                        self.sorttype = SORT_TYPES[new_index]
+                        self.start_sorting(SORT_ALGORITHMS.get(self.sorttype))
 
                     if self.rightbutton.handle_event(event):
-                        current_index = self.sort_types.index(self.sorttype)
-                        new_index = (current_index + 1) % len(self.sort_types)
-                        self.sorttype = self.sort_types[new_index]
-                        self.start_sorting(self.sort_algorithms.get(self.sorttype))
+                        current_index = SORT_TYPES.index(self.sorttype)
+                        new_index = (current_index + 1) % len(SORT_TYPES)
+                        self.sorttype = SORT_TYPES[new_index]
+                        self.start_sorting(SORT_ALGORITHMS.get(self.sorttype))
      
                 if event.type == pg.KEYDOWN:
                     if event.key == pg.K_ESCAPE:
@@ -277,7 +270,7 @@ class Visualizer:
 
                     if event.key == pg.K_r:
                         self.baseArray = [random.randint(ARRAY_MIN_ELEMENT, ARRAY_MAX_ELEMENT) for _ in range(random.randint(10, ARRAY_SIZE_LIMIT))]
-                        self.start_sorting(self.sort_algorithms.get(self.sorttype))
+                        self.start_sorting(SORT_ALGORITHMS.get(self.sorttype))
                         self.automode = False
 
                     if event.key == pg.K_b:

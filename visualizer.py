@@ -82,13 +82,12 @@ class Visualizer:
                 return None, f"File {file_path} not found.\nCreated new file at {file_path}."
             
             with open(file_path, 'r', encoding='utf-8') as file:
-                first_line = file.readline()
-                second_line = file.readline().strip()
+                array_line = file.readline().strip()
                 
-                if not second_line:
-                    return None, "The file does not contain an array.\nEnter your array on the second line of the file."
+                if not array_line:
+                    return None, "The file does not contain an array.\nEnter your array on the first line of the file."
             
-            array = self.parse_numbers_line(second_line)
+            array = self.parse_numbers_line(array_line)
             
             if array is None:
                 return None, "Uncorrect data format.\nUse format: 1 2 3 4 5"
@@ -126,14 +125,8 @@ class Visualizer:
         if not array:
             return False, "Array is empty! Enter at least one number"
         
-        if len(array) > 35:
-            return False, f"Too much elements ({len(array)}).\nMaximum length of the array is 35."
-    
-        for i, value in enumerate(array):
-            if value > 1000:
-                return False, f"Element at index {i+1} ({value}) larger than 1000.\nMaximum possible number is 1000."
-            if value < -999:
-                return False, f"Element at index {i+1} ({value}) lower than -999.\nMinimum possible number is -999."
+        if len(array) > ARRAY_SIZE_LIMIT:
+            return False, f"Too much elements ({len(array)}).\nMaximum length of the array is {ARRAY_SIZE_LIMIT}."
         
         return True, None
 
@@ -187,8 +180,7 @@ class Visualizer:
 
     def create_default_array_file(self, file_path):
         try:
-            with open(file_path, 'w', encoding='utf-8') as file:
-                file.write("Write the array on the next line in the format \"1 2 3 4 5 6 7\", the maximum length of the array is 35, the maximum possible number is 1000, the minimum is -999.\n")
+            open(file_path, 'w', encoding='utf-8')
         except Exception as e:
             print(f"File creating error: {e}")
 

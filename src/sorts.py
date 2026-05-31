@@ -1,4 +1,8 @@
+"""Алгоритмы сортировок с записью действий в массив actions."""
+
 def bubble_sort_rec(arr, actions):
+    """Сортировка пузырьком."""
+
     n = len(arr)
     for i in range(n):
         for j in range(0, n - i - 1):
@@ -8,6 +12,8 @@ def bubble_sort_rec(arr, actions):
                 actions.append(('swap', j, j + 1))
 
 def selection_sort_rec(arr, actions):
+    """Сортировка выборкой."""
+
     n = len(arr)
     for i in range(n):
         min_idx = i
@@ -15,11 +21,13 @@ def selection_sort_rec(arr, actions):
             actions.append(('compare', j, min_idx))
             if arr[j] < arr[min_idx]:
                 min_idx = j
-        if (min_idx != i):
+        if min_idx != i:
             arr[i], arr[min_idx] = arr[min_idx], arr[i]
             actions.append(('swap', i, min_idx))
 
 def insertion_sort_rec(arr, actions):
+    """Сортировка вставками."""
+
     n = len(arr)
     for i in range(1, n):
         j = i

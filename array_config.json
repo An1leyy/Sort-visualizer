@@ -1,0 +1,6 @@
+{
+    "min_length": 10,
+    "max_length": 50,
+    "min_element": -999,
+    "max_element": 1000
+}
